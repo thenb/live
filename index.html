@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="css/style.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+  
+      header, main, footer,.content {
+        padding-left: 300px;
+      }
+  
+      @media only screen and (max-width : 992px) {
+        header, main, footer,.content {
+          padding-left: 0;
+        }
+      }
+    </style>    
+  </head>  
+  <body>    
+    <!--Header-->    
+    <nav class="grey lighten-5">
+      <div class="nav wrapper">
+        <div class="container ">
+            <div class="row right">
+              <div class="row">
+                <a href="" class="brand-logo cyan-text">Ricardo Barato</a>
+              </div>
+              <div class="row">
+                <a href="" class="cyan-text">Live University</a>
+              </div> 
+            </div>
+          <a href="" class="button-collapse" data-activates="sidenav"><i class="material-icons cyan-text text-darken-4">menu</i></a>          
+        </div>
+      </div>
+    </nav>
+    <!--SideNav-->  
+    <ul class="side-nav fixed" id="sidenav">
+      <li>
+        <div class="user-view" style="height: 150px !important;">
+          <div class="background" style="background-color: cyan">              
+          </div>           
+        </div>
+        <div class="col s12">
+          <div class="col s6 offset-s2">
+              <img src="img/logo1.png" alt="" >
+          </div>          
+        </div>          
+      </li>      
+      <li class="active">
+        <a href="./index.html"><i class="material-icons">people</i>Colaboradores</a>
+      </li>
+      <li>
+        <a href="./cursos.html"><i class="material-icons">developer_board</i>Cursos</a>
+      </li>
+    </ul>
+    <!--Main Container-->
+    <div class="content">     
+      <div class="row">
+        <div class="col s12 l12 m12">
+          <div class="card-panel">
+             <!-- First Block-->
+            <h5>14 Práticas de Negociação</h5>
+            <h6>03 de Agosto de 2018</h6>              
+            <br>
+            <div class="row">
+              <button class="btn waves-effect waves-light">
+                <i class="material-icons right">content_paste</i> CHECKLIST                    
+              </button>
+              <button class="btn waves-effect waves-light">
+                <i class="material-icons right">cloud_download</i> BAIXAR CONTEÚDO
+              </button>
+            </div>
+            <div class="div grey lighten-5 custon-left-border"> 
+              <div id="tabelaInstrucoes"></div>
+            </div>
+            <br>
+            <!-- Second Block-->
+            <div class="row">
+              <div class="col s1">
+                <div class="row">
+                    <h6>Colaboradores</h6>                  
+                </div>
+              </div>
+              <div class="col s6 offset-s5">
+                <div class="row">
+                    <button class="btn waves-effect waves-light" style="margin-right: 30px">
+                        <i class="material-icons right">add</i> Adicionar                    
+                    </button>
+                    <input id="icon_prefix" type="text" placeholder="Pesquisar" style="width: auto !important">                    
+                </div>                         
+              </div>                
+            </div> 
+            <div id="tabelaColaboradores"></div>
+          </div>
+        </div> 
+      </div>
+    </div>     
+   <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/ejs.min.js" src=""></script>
+  <script>
+    $(document).ready(function () {
+      // Custom JS & jQuery here
+      $('.button-collapse').sideNav();
+    });
+  </script>
+  <script>
+    var colaboradores = [
+        {nome: "Jorge", email: "jorge@febra.org.br", cargo: "Assistente", empresa: "Live University"},
+        {nome: "Jorge", email: "jorge@febra.org.br", cargo: "Assistente", empresa: "Live University"},
+        {nome: "Jorge", email: "jorge@febra.org.br", cargo: "Assistente", empresa: "Live University"},
+        {nome: "Jorge", email: "jorge@febra.org.br", cargo: "Assistente", empresa: "Live University"}
+      ];
+
+      var instrucoes = [
+        {instrucao: "Instrução 1", observacao: "Algumas observações sobre essa instrução"},
+        {instrucao: "Instrução 1", observacao: "Algumas observações sobre essa instrução"},
+        {instrucao: "Instrução 1", observacao: "Algumas observações sobre essa instrução"},
+        {instrucao: "Instrução 1", observacao: "Algumas observações sobre essa instrução"}
+      ];
+
+      htmlColaboradores = ejs.render('<ul class="custon-ul-border"><% colaboradores.forEach(i => { %><li class="collection-item custon-collection-item-height row"><div class="col s3 m3"><div class="row"><h6 class="black-text"><%= i.nome %></h6><h6 class="grey-text text-lighten-1"><%= i.email %></h6></div></div><div class="col s3 m3"><div class="row"><h6 class="black-text">Cargo:</h6><h6 class="grey-text text-lighten-1"><%= i.cargo %></h6></div></div><div class="col s3 m3"><div class="row"><h6 class="black-text">Empresa</h6><h6 class="grey-text text-lighten-1"><%= i.empresa %></h6></div></div><div class="col s2 m2"><div class="row"><button class="btn waves-effect waves-light">ABRIR</button><button class="btn waves-effect waves-light">REMOVER</button></div></div></li><% }) %></ul>', {colaboradores: colaboradores}); 
+      htmlInstrucao = ejs.render('  <% instrucoes.forEach(i => { %><div class="row"><div class="col s1"><p style="padding-left: 40px"><label class="center-align"><input type="checkbox" class="custon-checkbox" checked="checked" /></label></p></div><div class="col s11"><div class="row"><h6 class="black-text"><%= i.instrucao %></h6><h6 class="grey-text text-lighten-1"><%= i.observacao %> </h6></div></div></div><% }) %>', {instrucoes: instrucoes}); 
+      
+      $('#tabelaColaboradores').html(htmlColaboradores);
+      $('#tabelaInstrucoes').html(htmlInstrucao);
+  </script>
+  </body>
+</html>
